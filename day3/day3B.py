@@ -45,7 +45,7 @@ for x in range(len(imp2)):
     if totalString[currentStep] == "#":
         trees1 = trees1 + 1
 
-    currentStep = currentStep + 3
+    currentStep = currentStep + 1
 
     print(totalString)
 
@@ -71,7 +71,7 @@ for x in range(len(imp2)):
     if totalString[currentStep] == "#":
         trees2 = trees2 + 1
 
-    currentStep = currentStep + 1
+    currentStep = currentStep + 3
 
     print(totalString)
 
@@ -98,7 +98,7 @@ for x in range(len(imp2)):
     if totalString[currentStep] == "#":
         trees3 = trees3 + 1
 
-    currentStep = currentStep + 3
+    currentStep = currentStep + 5
 
     print(totalString)
 
@@ -124,7 +124,7 @@ for x in range(len(imp2)):
     if totalString[currentStep] == "#":
         trees4 = trees4 + 1
 
-    currentStep = currentStep + 5
+    currentStep = currentStep + 7
 
     print(totalString)
 
@@ -150,7 +150,7 @@ for x in range(0,len(imp2),2):
     if totalString[currentStep] == "#":
         trees5 = trees5 + 1
 
-    currentStep = currentStep + 3
+    currentStep = currentStep + 1
 
     print(totalString)
 
