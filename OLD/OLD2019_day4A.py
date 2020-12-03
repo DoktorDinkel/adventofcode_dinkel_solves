@@ -5,4 +5,7 @@ numbers = list(range(197487,673251))
 for x in range(197487,673251):
     currentInt = numbers[x]
     print(currentInt)
-    break
+
+    for y in range(len(currentInt)):
+        chars = currentInt[y]
+        
