@@ -68,7 +68,7 @@ for x in range(len(imp2)):
 
         #cm
 
-        if currentString.find("cm") > hgtPos:
+        if currentString.find("cm") == hgtPos + offset + 3 or hgtPos + offset + 4:
 
             cmPos = currentString[hgtPos:len(currentString)].find("cm")
             print("cmPos check-area",currentString[hgtPos:len(currentString)])
