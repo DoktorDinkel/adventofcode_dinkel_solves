@@ -1,30 +1,22 @@
 diagnostics = File.readlines("input_day3.txt")
 
 def binToDec(binaryNum)
-    i = binaryNum.to_s.length
-    puts i
+    i = 0
     binaryValue = 1
     decValue = 0
 
-    while i >= 0
-        if binaryNum[i,1].to_i == 1
+    binaryNum = binaryNum.to_s.reverse
+
+    while i < binaryNum.length
+        if binaryNum[i,1] == "1"
             decValue = decValue + binaryValue
-            puts binaryNum[i,1]
-            puts decValue
-            puts binaryValue
-            puts "---------------"
-        elsif binaryNum[i,1].to_i == 0
-            puts binaryNum[i,1]
-            puts decValue
-            puts binaryValue
-            puts "---------------"
         end
 
         binaryValue = binaryValue * 2
-        i -= 1
+        i +=1
     end
 
-    return decValue - 1
+    return decValue
 end
 
 def countAndAssign(binIndex, list)
@@ -35,15 +27,16 @@ def countAndAssign(binIndex, list)
     gammaOut = 0
     epsilonOut = 0
 
-    while i <= list.length
+    while i < list.length
         currentBin = list[i]
-        if currentBin.to_s[binIndex] == 1
+        #puts "binIndex: #{binIndex}"
+        #puts "currentBin.to_s[binIndex]: #{currentBin.to_s[binIndex]}"
+        if currentBin.to_s[binIndex] == "1"
             ones += 1
-        elsif
-            zeros += 1
+            #puts "one"
         else
-            puts "invalid input"
-            return
+            zeros += 1
+            #puts "zero"
         end
 
         i += 1
@@ -62,14 +55,37 @@ i = 0
 gammaBin = ""
 epsilonBin = ""
 
-while i <= diagnostics[0].length
+puts "diagnostics[0].length: #{diagnostics[0].chomp.length}"
+while i < diagnostics[0].chomp.length
     gammaOut, epsilonOut = countAndAssign(i, diagnostics)
     
+    #puts gammaOut
+    #puts epsilonOut
+    #puts i
+
     gammaBin[i] = gammaOut.to_s
     epsilonBin[i] = epsilonOut.to_s
 
     i += 1
 end
 
-puts gammaBin
-puts epsilonBin
+puts "executed column operation #{i} times."
+
+if gammaBin.length == 12 and epsilonBin.length == 12
+    puts "output strings have the same lengths as the amount of columns in input, success!"
+else
+    puts "mismatched length of output and input!"
+end 
+
+puts "gammaBin:     #{gammaBin}"
+puts "epsilonBin:   #{epsilonBin}"
+
+gammaInt = binToDec(gammaBin)
+epsilonInt = binToDec(epsilonBin)
+
+puts gammaInt
+puts epsilonInt
+
+sum = gammaInt * epsilonInt
+
+puts "final answer: #{sum}"
