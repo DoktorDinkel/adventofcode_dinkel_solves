@@ -22,19 +22,22 @@ def binToDec(binaryNum)
     return decValue
 end
 
-def oxygenCheck(oxyIndex, list)
+def oxygenCheck(oxyIndex, list) #oxyIndex går upp till 999 (100-1), inte 11 (12-1)????? hallå varför gjorde jag så
     i = 0
 
     ones = 0
     zeros = 0
 
     while i < list.length
-        if list[i][oxyIndex] == 1
+        if list[i][oxyIndex] == "1" #måste kolla efter strings inte integers dummer
             ones += 1
-        elsif list[i][oxyIndex] == 0
+        elsif list[i][oxyIndex] == "0"
             zeros += 1
         else
-            puts "invalid input"
+            puts "oxygenCheck: invalid input"
+            puts "list[i][oxyindex] == 0 nor list[i][oxyindex] == 1:#{list[i][oxyIndex]}"
+            puts i
+            puts oxyIndex
             return
         end
 
@@ -46,7 +49,7 @@ def oxygenCheck(oxyIndex, list)
     elsif zeros > ones
         return "zero"
     else
-        puts "invalid input"
+        puts "oxygenCheck2: invalid input"
         return
     end
 end
@@ -58,12 +61,12 @@ def co2Check(co2Index, list)
     zeros = 0
 
     while i < list.length
-        if list[i][co2Index] == 1
+        if list[i][co2Index] == "1"
             ones += 1
-        elsif list[i][co2Index] == 0
+        elsif list[i][co2Index] == "0"
             zeros += 1
         else
-            puts "invalid input"
+            puts "co2Check: invalid input"
             return
         end
 
@@ -75,7 +78,7 @@ def co2Check(co2Index, list)
     elsif zeros < ones || ones == zeros
         return "zero"
     else
-        puts "invalid input"
+        puts "co2Check2: invalid input"
         return
     end
 end
@@ -95,16 +98,16 @@ def removeElement(list, elementIndex, removeValue)
     return list
 end
 
-def oxyFunction()
+def oxyFunction(oxygenDiagnostics)
 
     i = 0
 
     while i < oxygenDiagnostics.length
         
-        if removeElement(oxygenDiagnostics, i, 1).class == "String" || removeElement(oxygenDiagnostics, i, 0).class == "String"
+        if removeElement(oxygenDiagnostics, i, 1).class == String || removeElement(oxygenDiagnostics, i, 0).class == String
             return removeElement(oxygenDiagnostics, i, 1).to_s
 
-        elsif removeElement(oxygenDiagnostics, i, 1).class == "Array" || removeElement(oxygenDiagnostics, i, 0).class == "Array"
+        elsif removeElement(oxygenDiagnostics, i, 1).class == Array || removeElement(oxygenDiagnostics, i, 0).class == Array
 
             if oxygenCheck(i, oxygenDiagnostics) == "one"
                 puts "one was returned; removing elements"
@@ -115,11 +118,12 @@ def oxyFunction()
                 oxygenDiagnostics = removeElement(oxygenDiagnostics, i, 1)
 
             else
-                puts "invalid input"
+                puts "oxyFunction: invalid input"
                 return
             end
         else
-            puts "invalid input"
+            puts "oxyFunction2: invalid input"
+            puts "1:#{removeElement(oxygenDiagnostics, i, 1).class} 0:#{removeElement(oxygenDiagnostics, i, 0).class}"
             return
         end
 
@@ -129,16 +133,16 @@ def oxyFunction()
     return removeElement(oxygenDiagnostics, i, 1).to_s
 end
 
-def co2Function()
+def co2Function(co2Diagnostics)
 
     i = 0
 
-    while i < co2Diagnostics
+    while i < co2Diagnostics.length
         
-        if removeElement(co2Diagnostics, i, 1).class == "String" || removeElement(co2Diagnostics, i, 0).class == "String"
+        if removeElement(co2Diagnostics, i, 1).class == String || removeElement(co2Diagnostics, i, 0).class == String
             return removeElement(co2Diagnostics, i, 1).to_s
 
-        elsif removeElement(co2Diagnostics, i, 1).class == "Array" || removeElement(co2Diagnostics, i, 0).class == "Array"
+        elsif removeElement(co2Diagnostics, i, 1).class == Array || removeElement(co2Diagnostics, i, 0).class == Array
 
             if co2Check(i, co2Diagnostics) == "one"
                 puts "one was returned; removing elements"
@@ -149,11 +153,12 @@ def co2Function()
              co2Diagnostics = removeElement(co2Diagnostics, i, 1)
 
             else
-                puts "invalid input"
+                puts "co2Function: invalid input"
                 return
             end
         else
-            puts "invalid input"
+            puts "co2Function2: invalid input"
+            puts "1:#{removeElement(co2Diagnostics, i, 1).class} 0:#{removeElement(co2Diagnostics, i, 0).class}"
             return
         end
 
@@ -163,8 +168,8 @@ def co2Function()
     return removeElement(co2Diagnostics, i, 1).to_s
 end
 
-oxyDec = binToDec(oxyFunction)
-co2Dec = binToDec(co2Function)
+oxyDec = binToDec(oxyFunction(oxygenDiagnostics))
+co2Dec = binToDec(co2Function(co2Diagnostics))
 
 sum = oxyDec * co2Dec
 puts sum
