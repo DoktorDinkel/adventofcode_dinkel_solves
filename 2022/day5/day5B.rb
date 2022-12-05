@@ -1,4 +1,5 @@
 # Very useful! https://linuxhint.com/ruby-array-delete-element/
+# This too! https://stackoverflow.com/questions/1801516/how-do-you-add-an-array-to-another-array-in-ruby-and-not-end-up-with-a-multi-dim
 
 data = File.readlines("input_day5.txt")
 
@@ -32,10 +33,12 @@ while i < data.length
 
     quantity, origin, destination = extractCommands(currentLine)
 
+    stacks[destination-1].insert(0, stacks[origin-1][0..quantity-1])
+
+    stacks[destination-1].flatten!
+
     j = 0
     while j < quantity
-        stacks[destination-1].unshift(stacks[origin-1][0])
-
         stacks[origin-1].shift
 
         j += 1
