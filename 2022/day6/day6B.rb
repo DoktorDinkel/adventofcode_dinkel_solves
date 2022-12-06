@@ -5,7 +5,7 @@ index = 0
 i = 0
 
 while i < data[0].length
-    currentChars = data[0][i..i+3]
+    currentChars = data[0][i..i+13]
     puts currentChars
     
     if currentChars.chars.uniq.count { |char| currentChars.count(char) > 1 } == 0
@@ -19,3 +19,6 @@ while i < data[0].length
 end
 
 puts index + startIndicator.length
+puts index
+puts startIndicator
+puts startIndicator.length
